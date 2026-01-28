@@ -4,41 +4,45 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Taller Web I</title>
+  <title>Finance Manager</title>
 
   <!-- Boostrap core css -->
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
 
   <!-- custom style -->
+  <link rel="stylesheet" href="/src/main/webapp/resources/core/css/main.css">
   <link rel="stylesheet" th:href="@{/css/main.css}"/>
-
+  <link rel="stylesheet" href="/src/main/webapp/resources/core/css/register.css">
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">UNLAM</a>
-</nav>
+<main id="main">
+    <div id="container-form">
+        <form id="form" th:action="@{/registrarme}" method="POST" th:object="${usuario}">
+            
+            <h1>Nuevo Usuario</h1>
+            
+            <label for="nombre">Nombre</label>
+            <input th:field="*{nombre}" type="text" id="nombre" class="form-control" required/>
 
-<main role="main" class="container">
+            <label for="apellido">Apellido</label>
+            <input th:field="*{apellido}" type="text" id="apellido" class="form-control" required/>
 
-  <div class = "container">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-      <form action="#" th:action="@{/registrarme}" method="POST" th:object="${usuario}">
-        <h3 class="form-signin-heading">Nuevo Usuario</h3>
-        <hr class="colorgraph"><br>
+            <label for="email">Email</label>
+            <input th:field="*{email}" id="email" type="email" class="form-control" required/>
+            
+            <label for="password">Password</label>
+            <input th:field="*{password}" type="password" id="password" class="form-control" required/>
 
-        <input th:field="*{email}" id="email" class="form-control" required/>
-        <input th:field="*{password}" type="password" id="password" class="form-control" required/>
+            <button id="btn-registrarme" type="submit" disabled>Registrarme</button>
 
-        <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit">Registrarme</button>
-        <p th:if="${error != null}" class="alert alert-danger" th:text="'Error ' + ${error}">
-        </p>
-      </form>
+            <p th:if="${error != null}" class="alert alert-danger" th:text="'Error ' + ${error}"></p>
 
+            <a th:href="@{/login}">¿Ya tienes cuenta? <span>Ingresa aquí</span></a>
+
+        </form> 
     </div>
-  </div>
-
 </main>
 <!-- /.container -->
 
