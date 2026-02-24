@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,103 +8,184 @@
   <title>Taller Web I</title>
 
   <!-- Boostrap core css -->
-  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}" />
 
   <!-- custom style -->
-  <link rel="stylesheet" th:href="@{/css/main.css}"/>
-  <link rel="stylesheet" href="/src/main/webapp/resources/core/css/main.css">
-  <link rel="stylesheet" href="/src/main/webapp/resources/core/css/home.css">
+  <link rel="stylesheet" th:href="@{/css/main.css}" />
+  <link rel="stylesheet" th:href="@{/css/home.css}" />
 
 
 </head>
 
 <body>
 
-  <div id="home-container">
+  <div class="home-container">
 
-    <aside>
-      
-      <div id="div-icon" class="aside-child">
-        <img th:src="@{/img/nombre-foto.jpg}" src="/src/main/webapp/img/icon-financa-manager.png"  alt="Mi Foto" width="75px" />
-        <h1>Hyperion</h1>
+    <aside class="sidebar">
+
+      <div class="sidebar__brand">
+        <img class="sidebar__icon" th:src="@{/img/icon-finance-manager.png}" alt="Finance Manager Icon"/>
+        <h1 class="sidebar__tittle">WALLET</h1>
       </div>
 
-      <nav id="nav" class="aside-child">
-        <a href="">Inicio</a>
-        <a href="">Mis movimientos</a>
-        <a href="">Categorias</a>
-        <a href="">Perfil</a>
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="">Home</a>
+        <a class="sidebar__link" href="">Transactions</a>
+        <a class="sidebar__link" href="">Categories</a>
+        <a class="sidebar__link" href="">Profile</a>
       </nav>
-      
-      <div id="div-logout">
-        <button>
-          Cerrar Sesión
+
+      <div class="sidebar__footer">
+        <button class="sidebar__logout">
+          Log Out
         </button>
       </div>
 
     </aside>
 
-    <main>
+    <main class="main">
 
-      <header>
-        <div id="header-div-user">
-          <p>Hola,<span> Franco </span></p>
-          <img th:src="@{/img/nombre-foto.jpg}" src="/src/main/webapp/img/user.jpg"  alt="Mi Foto" width="40px" />
+      <header class="main__header">
+        <div class="main__profile">
+          <p class="main__name">Hi,<span> Franco </span></p>
+          <img class="main__img" th:src="@{/img/user.jpg}" alt="My photo"/>
         </div>
 
-        <div id="header-div-new-operation">
-          <h2>Overview</h2>
-          <div>
-            <button>+ New Operation</button>
+        <div class="main__controls">
+          <h2 class="main__title"> Overview </h2>
+          <div class="main__new-operation">
+            <button class="main__button">+ New Operation</button>
           </div>
         </div>
       </header>
 
-      <section id="overview">
+      <section class="overview">
 
-        <article class="overview-targets">
-          <h3>Saldo total</h3>
-          <p>$100,000</p>
+        <article class="overview__target">
+          <h3 class="overview__title">TOTAL BALANCE</h3>
+          <p class="overview__amount">$100,000</p>
         </article>
 
-        <article class="overview-targets">
-          <h3>Ingresos del mes</h3>
-          <p>$120,000</p>  
+        <article class="overview__target">
+          <h3 class="overview__title">MONTHLY INCOME</h3>
+          <p class="overview__amount">$120,000</p>
         </article>
-        
-        <article class="overview-targets">
-          <h3>Gastos del mes</h3>
-          <p>$20,000</p>
+
+        <article class="overview__target">
+          <h3 class="overview__title">MONTHLY EXPENSES</h3>
+          <p class="overview__amount">$20,000</p>
         </article>
 
       </section>
 
-  <section id="charts">
-    
-    <div class="chart-container" id="chart-container-columns">
-        <div class="chart-card">
-            <h2>Evolución Semestral</h2>
-            <div class="chart-wrapper">
-                <canvas id="columns"></canvas>
+      <section class="charts">
+
+        <div class="charts__card charts__card--wide">
+          <div class="charts__content">
+             <h2 class="charts__title">6-Month Trend</h2>
+            <div class="charts-wrapper">
+              <canvas id="columnsChart"></canvas>
             </div>
+          </div>
         </div>
-    </div>
 
-    <div class="chart-container" id="chart-container-doughnut">
-        <div class="chart-card">
-            <h2>Gastos por Categoría</h2>
-            <div class="chart-wrapper">
-                <canvas id="doughnut"></canvas>
+        <div class="charts__card charts__card--narrow">
+          <div class="charts__content">
+            <h2 class="charts__title">Expenses by Category</h2>
+            <div class="charts-wrapper">
+              <canvas id="doughnutChart"></canvas>
             </div>
+          </div>
         </div>
-    </div>
 
-  </section>
-</main>
+      </section>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/home.js}"></script>
-<script type="text/javascript" src="/src/main/webapp/resources/core/js/home.js"></script>
+      <section class="activity">
+
+        <div class="activity__container">
+
+          <header class="activity__header">
+            <h3 class="activity__title">ACTIVITY</h3>
+          </header>
+
+          <div class="activity__list">
+
+            <article class="activity__card">
+              <h3 class="activity__amount">$ 5180.96</h3>
+              <p class="activity__description">Burgers</p>
+              <div class="activity__date">
+                <p class="activity__day">28/01/2026</p>
+                <p class="activity__time">16:14 pm</p>
+              </div>
+              <div class="activity__category">
+                <img class="activity__category-icon" alt="" th:src="@{/img/icon_food.png}">
+                <p class="activity__category-name">Food</p>
+              </div>
+            </article>
+
+            <article class="activity__card">
+              <h3 class="activity__amount">$ 5180.96</h3>
+              <p class="activity__description">Burgers</p>
+              <div class="activity__date">
+                <p class="activity__day">28/01/2026</p>
+                <p class="activity__time">16:14 pm</p>
+              </div>
+              <div class="activity__category">
+                <img class="activity__category-icon" alt="" th:src="@{/img/icon_food.png}">
+                <p class="activity__category-name">Food</p>
+              </div>
+            </article>
+
+            <article class="activity__card">
+              <h3 class="activity__amount">$ 5180.96</h3>
+              <p class="activity__description">Burgers</p>
+              <div class="activity__date">
+                <p class="activity__day">28/01/2026</p>
+                <p class="activity__time">16:14 pm</p>
+              </div>
+              <div class="activity__category">
+                <img class="activity__category-icon" alt="" th:src="@{/img/icon_food.png}">
+                <p class="activity__category-name">Food</p>
+              </div>
+            </article>
+
+            <article class="activity__card">
+              <h3 class="activity__amount">$ 5180.96</h3>
+              <p class="activity__description">Burgers</p>
+              <div class="activity__date">
+                <p class="activity__day">28/01/2026</p>
+                <p class="activity__time">16:14 pm</p>
+              </div>
+              <div class="activity__category">
+                <img class="activity__category-icon" alt="" th:src="@{/img/icon_food.png}">
+                <p class="activity__category-name">Food</p>
+              </div>
+            </article>
+
+            <article class="activity__card">
+              <h3 class="activity__amount">$ 5180.96</h3>
+              <p class="activity__description">Burgers</p>
+              <div class="activity__date">
+                <p class="activity__day">28/01/2026</p>
+                <p class="activity__time">16:14 pm</p>
+              </div>
+              <div class="activity__category">
+                <img class="activity__category-icon" alt="" th:src="@{/img/icon_food.png}">
+                <p class="activity__category-name">Food</p>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/home.js}"></script>    
 </body>
+
 </html>

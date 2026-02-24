@@ -1,4 +1,4 @@
-const ctxBarras = document.getElementById('columns').getContext('2d');
+const ctxBarras = document.getElementById('columnsChart').getContext('2d');
 
 const gradientBar = ctxBarras.createLinearGradient(0, 0, 0, 400);
 gradientBar.addColorStop(0, 'rgba(135, 135, 255, 1)');   
@@ -7,7 +7,7 @@ gradientBar.addColorStop(1, 'rgba(135, 135, 255, 0.4)');
 new Chart(ctxBarras, {
     type: 'bar',
     data: {
-        labels: ['Ago', 'Sep', 'Oct', 'Nov', 'Dic', 'Ene'],
+        labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
         datasets: [{
             label: 'Gastos',
             data: [12000, 19000, 3000, 5000, 20000, 30000],
@@ -59,12 +59,12 @@ new Chart(ctxBarras, {
     }
 });
 
-const ctxDona = document.getElementById('doughnut').getContext('2d');
+const ctxDona = document.getElementById('doughnutChart').getContext('2d');
 
 new Chart(ctxDona, {
     type: 'doughnut',
     data: {
-        labels: ['Comida', 'Alquiler', 'Ocio'],
+        labels: ['Food', 'Housing', 'Entertainment'],
         datasets: [{
             data: [300, 500, 100],
             
