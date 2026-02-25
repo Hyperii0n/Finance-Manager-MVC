@@ -1,0 +1,86 @@
+body{
+    background: linear-gradient(to bottom, #0f2537, rgb(135, 135, 255));
+    height: 100vh;
+}
+
+#main{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+/* Midnight Blue*/
+/* Emerald Green */
+/* GRIS CLARO = #f4f6f9*/
+#form{
+
+    width: 90%;
+    max-width: 400px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 3em;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+#form h1{
+    color: white;
+    text-align: center;
+}
+
+#form label{
+    color: white;
+}
+
+#form input{
+    outline: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+
+    margin: 0.5em 0;
+    padding: 15px 20px; /* 15px arriba/abajo, 20px lados */
+    font-size: 1.2rem;
+    background: #c8c8c8;
+    border-radius: 10px;
+}
+
+#form button{
+    margin: 0.75em 0 0 0;
+    padding: 1em;
+    font-size: 1em;
+    border-radius: 10px;
+}
+
+#form a{
+    text-decoration: none;
+    color: white;
+}
+
+#form a span{
+    color: rgb(135, 135, 255);
+    transition: ease .3s;
+}
+
+#form a {
+    color: rgb(135, 135, 255); /* El mismo color de tu gradiente/H1 */
+    text-decoration: none;
+    font-weight: 600;      /* Un poco más gordita la letra */
+    transition: color 0.3s;
+}
+
+#form a:hover span{
+    color: #ffffff;        /* Al pasar el mouse se pone blanco */
+}
