@@ -1,47 +1,41 @@
 <!DOCTYPE HTML>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Finance Manager</title>
+    <title>Finance Manager - Login</title>
 
-    <!-- Boostrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
 
-    <!-- custom style --> 
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" href="/src/main/webapp/resources/core/css/main.css">
     <link rel="stylesheet" th:href="@{/css/login.css}"/>
-    <link rel="stylesheet" href="/src/main/webapp/resources/core/css/login.css">
 
 </head>
 
 <body>
 
-
 <main id="main">
     <div id="container-form">
-        <form id="form" th:action="@{/validar-login}" method="POST" th:object="${datosLogin}">
-            <h1>Finance Manager</h3>
-            
+        <form id="form" th:action="@{/process-login}" method="POST" th:object="${loginData}">
+            <h1>Finance Manager</h1>
+
             <label for="email">Email</label>
-            <input th:field="*{email}" id="email" type="email" class="form-control" required/>
-            <label for="email">Password</label>
+            <input th:field="*{email}" id="email" type="email" class="form-control" placeholder="example@mail.com" required/>
+
+            <label for="password">Password</label>
             <input th:field="*{password}" type="password" id="password" class="form-control" required/>
 
-            <button id="btn-login" class="" type="submit" disabled>Iniciar sesión</button>
+            <button id="btn-login" type="submit">Login</button>
 
-            <p th:if="${error != null}" class="alert alert-danger" th:text="'Error ' + ${error}"> </p>
+            <p th:if="${error != null}" class="alert alert-danger" th:text="${error}"> </p>
 
-            <a id="btn-register" th:href="@{/nuevo-usuario}">¿No tienes cuenta? <span>Registrate aquí</span></a>
+            <a id="btn-register" th:href="@{/new-user}">Don't have an account? <span>Register here</span></a>
 
-        </form> 
+        </form>
     </div>
 </main>
-<!-- /.container -->
 
-<!-- Boostrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 <script type="module" th:src="@{js/login.js}"></script>
 </body>

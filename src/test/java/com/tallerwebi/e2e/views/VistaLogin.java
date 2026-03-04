@@ -1,4 +1,4 @@
-package com.tallerwebi.punta_a_punta.vistas;
+package com.tallerwebi.e2e.views;
 
 import com.microsoft.playwright.Page;
 

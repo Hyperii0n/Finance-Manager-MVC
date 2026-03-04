@@ -1,8 +1,8 @@
-package com.tallerwebi.punta_a_punta;
+package com.tallerwebi.e2e;
 
 import com.microsoft.playwright.*;
-import com.tallerwebi.punta_a_punta.vistas.VistaLogin;
-import com.tallerwebi.punta_a_punta.vistas.VistaNuevoUsuario;
+import com.tallerwebi.e2e.views.VistaLogin;
+import com.tallerwebi.e2e.views.VistaNuevoUsuario;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

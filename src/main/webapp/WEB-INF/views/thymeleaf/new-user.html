@@ -1,28 +1,26 @@
 <!DOCTYPE HTML>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Finance Manager</title>
+    <title>Finance Manager</title>
 
-  <!-- Boostrap core css -->
-  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
 
-  <!-- custom style -->
-  <link rel="stylesheet" href="/src/main/webapp/resources/core/css/main.css">
-  <link rel="stylesheet" th:href="@{/css/main.css}"/>
-  <link rel="stylesheet" href="/src/main/webapp/resources/core/css/register.css">
+    <link rel="stylesheet" href="/src/main/webapp/resources/core/css/main.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" href="/src/main/webapp/resources/core/css/register.css">
 </head>
 
 <body>
 
 <main id="main">
     <div id="container-form">
-        <form id="form" th:action="@{/registrarme}" method="POST" th:object="${usuario}">
-            
+        <form id="form" th:action="@{/register}" method="POST" th:object="${user}">
+
             <h1>Nuevo Usuario</h1>
-            
+
             <label for="nombre">Nombre</label>
             <input th:field="*{nombre}" type="text" id="nombre" class="form-control" required/>
 
@@ -31,22 +29,19 @@
 
             <label for="email">Email</label>
             <input th:field="*{email}" id="email" type="email" class="form-control" required/>
-            
+
             <label for="password">Password</label>
             <input th:field="*{password}" type="password" id="password" class="form-control" required/>
 
             <button id="btn-registrarme" type="submit" disabled>Registrarme</button>
 
-            <p th:if="${error != null}" class="alert alert-danger" th:text="'Error ' + ${error}"></p>
+            <p th:if="${error != null}" class="alert alert-danger" th:text="${error}"></p>
 
             <a th:href="@{/login}">¿Ya tienes cuenta? <span>Ingresa aquí</span></a>
 
-        </form> 
+        </form>
     </div>
 </main>
-<!-- /.container -->
-
-<!-- Boostrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>
 </html>
