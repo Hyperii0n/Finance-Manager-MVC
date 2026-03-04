@@ -47,8 +47,8 @@
 
       <header class="main__header">
         <div class="main__profile">
-          <p class="main__name">Hi,<span> Franco </span></p>
-          <img class="main__img" th:src="@{/img/user.jpg}" alt="My photo"/>
+          <p class="main__name">Hi,<span th:text="{user.name}">  </span></p>
+          <img class="main__img" th:src="@{${user.photoUrl ?: '/img/default-user.jpg'}}" alt="User Photo"/>
         </div>
 
         <div class="main__controls">

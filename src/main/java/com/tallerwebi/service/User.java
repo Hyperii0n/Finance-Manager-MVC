@@ -1,4 +1,4 @@
-package com.tallerwebi.dominio;
+package com.tallerwebi.service;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,15 +6,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Usuario {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
+    private String name;
     private String password;
-    private String rol;
-    private Boolean activo = false;
+    private String photoUrl;
+
+    public User() {};
+
+    public User( String email,  String password, String name, String photoUrl) {
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.photoUrl = photoUrl;
+    }
 
     public Long getId() {
         return id;
@@ -28,30 +37,20 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
     public String getPassword() {
         return password;
     }
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getRol() {
-        return rol;
-    }
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-    public Boolean getActivo() {
-        return activo;
-    }
-    public void setActivo(Boolean activo) {
-        this.activo = activo;
-    }
-
-    public boolean activo() {
-        return activo;
-    }
-
-    public void activar() {
-        activo = true;
-    }
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    };
+    public String getPhotoUrl(){return photoUrl;};
 }
