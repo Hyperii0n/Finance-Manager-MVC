@@ -1,13 +1,13 @@
-package com.tallerwebi.controller;
+package com.tallerwebi.dto;
 
-public class LoginData {
+public class LoginDataDto {
     private String email;
     private String password;
 
-    public LoginData() {
+    public LoginDataDto() {
     }
 
-    public LoginData(String email, String password) {
+    public LoginDataDto(String email, String password) {
         this.email = email;
         this.password = password;
     }

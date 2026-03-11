@@ -1,12 +1,13 @@
 package com.tallerwebi.service;
 
-import com.tallerwebi.service.excepcion.IncorrectUserOrPasswordException;
-import com.tallerwebi.service.excepcion.ExistingUser;
-import com.tallerwebi.controller.dto.UserHeaderDto;
+import com.tallerwebi.model.User;
+import com.tallerwebi.exception.IncorrectUserOrPasswordException;
+import com.tallerwebi.exception.ExistingUser;
+import com.tallerwebi.dto.UserHeaderDto;
 
 public interface LoginService {
 
-    void authenticate(String email, String password) throws IncorrectUserOrPasswordException;
+    User authenticate(String email, String password) throws IncorrectUserOrPasswordException;
     void register(User usuario) throws ExistingUser;
-    UserHeaderDto getUserHeader(String email) ;
+    UserHeaderDto getUserHeader(Long id) ;
 }

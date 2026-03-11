@@ -1,24 +1,24 @@
-const ctxBarras = document.getElementById('columnsChart').getContext('2d');
+const barCtx = document.getElementById('columnsChart').getContext('2d');
 
-const gradientBar = ctxBarras.createLinearGradient(0, 0, 0, 400);
-gradientBar.addColorStop(0, 'rgba(135, 135, 255, 1)');   
-gradientBar.addColorStop(1, 'rgba(135, 135, 255, 0.4)'); 
+const barGradient = barCtx.createLinearGradient(0, 0, 0, 400);
+barGradient.addColorStop(0, 'rgba(135, 135, 255, 1)');
+barGradient.addColorStop(1, 'rgba(135, 135, 255, 0.4)');
 
-new Chart(ctxBarras, {
+new Chart(barCtx, {
     type: 'bar',
     data: {
         labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
         datasets: [{
-            label: 'Gastos',
+            label: 'Expenses', // Traducido: Gastos -> Expenses
             data: [12000, 19000, 3000, 5000, 20000, 30000],
-            
-            backgroundColor: '#8787ff', 
-            
-            hoverBackgroundColor: '#ffffff', 
-            
-            borderRadius: 6, 
+
+            backgroundColor: '#8787ff',
+
+            hoverBackgroundColor: '#ffffff',
+
+            borderRadius: 6,
             barPercentage: 0.6,
-            borderSkipped: false, 
+            borderSkipped: false,
         }]
     },
     options: {
@@ -33,24 +33,24 @@ new Chart(ctxBarras, {
                 borderColor: 'rgba(255,255,255,0.1)',
                 borderWidth: 1,
                 padding: 10,
-                displayColors: false, 
+                displayColors: false,
             }
         },
         scales: {
             y: {
-                border: { display: false }, 
+                border: { display: false },
                 grid: {
                     color: 'rgba(255, 255, 255, 0.05)',
                     drawTicks: false,
                 },
-                ticks: { 
-                    color: '#64748b', 
+                ticks: {
+                    color: '#64748b',
                     font: { size: 11 }
                 }
             },
             x: {
                 grid: { display: false },
-                ticks: { 
+                ticks: {
                     color: '#64748b',
                     font: { size: 11 }
                 }
@@ -59,30 +59,30 @@ new Chart(ctxBarras, {
     }
 });
 
-const ctxDona = document.getElementById('doughnutChart').getContext('2d');
+const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
 
-new Chart(ctxDona, {
+new Chart(doughnutCtx, {
     type: 'doughnut',
     data: {
         labels: ['Food', 'Housing', 'Entertainment'],
         datasets: [{
             data: [300, 500, 100],
-            
+
             backgroundColor: [
-                '#f472b6', 
-                '#8787ff', 
-                '#2dd4bf'  
+                '#f472b6',
+                '#8787ff',
+                '#2dd4bf'
             ],
-            
-            borderColor: '#23272e', 
-            borderWidth: 5, 
-            
+
+            borderColor: '#23272e',
+            borderWidth: 5,
+
             hoverBackgroundColor: [
-                '#fbcfe8', 
+                '#fbcfe8',
                 '#a5a5ff',
-                '#99f6e4' 
+                '#99f6e4'
             ],
-            
+
             hoverOffset: 6
         }]
     },
@@ -96,7 +96,7 @@ new Chart(ctxDona, {
                 labels: {
                     color: '#94a3b8',
                     usePointStyle: true,
-                    pointStyle: 'circle', 
+                    pointStyle: 'circle',
                     padding: 20,
                     font: { size: 12, family: 'system-ui' }
                 }

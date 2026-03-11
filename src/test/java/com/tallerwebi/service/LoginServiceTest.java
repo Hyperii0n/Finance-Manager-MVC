@@ -1,10 +1,12 @@
 package com.tallerwebi.service;
 
 
-import com.tallerwebi.service.excepcion.ExistingUser;
-import com.tallerwebi.service.excepcion.IncorrectUserOrPasswordException;
-import com.tallerwebi.service.interfaces.UserRepository;
-import com.tallerwebi.controller.dto.UserHeaderDto;
+import com.tallerwebi.model.User;
+import com.tallerwebi.repository.UserRepository;
+import com.tallerwebi.exception.ExistingUser;
+import com.tallerwebi.exception.IncorrectUserOrPasswordException;
+import com.tallerwebi.dto.UserHeaderDto;
+import com.tallerwebi.service.impl.LoginServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +26,7 @@ public class LoginServiceTest {
 
     @Test
     public void givenNonExistentUser_whenAuthenticate_thenThrowsIncorrectUserOrPasswordException() throws IncorrectUserOrPasswordException {
-        User user = new User("franco@gmail.com","franco","aaaa1111","s");
+        User user = new User("alice@email.com","test","Alice","x");
         when(this.userRepository.findByEmail(user.getEmail())).thenReturn(null);
 
         assertThrows(IncorrectUserOrPasswordException.class, () -> {
@@ -34,25 +36,25 @@ public class LoginServiceTest {
 
     @Test
     public void givenExistingUser_whenAunthenticateIncorrectPassword_thenThrowsIncorrectUserOrPasswordException(){
-        User user = new User("franco@gmail.com","franco","aaaa1111", "s");
+        User user = new User("alice@email.com","test","Alice","x");
 
         when(this.userRepository.findByEmail(user.getEmail())).thenReturn(user);
 
         assertThrows(IncorrectUserOrPasswordException.class, () -> {
-           this.loginService.authenticate(user.getEmail(), "bbbb2222");
+           this.loginService.authenticate(user.getEmail(), "a1s2d3");
         });
     }
 
     @Test
     public void givenNonExistentUser_whenRegister_thenCallRepositoryMethod() throws ExistingUser {
-        User user = new User("franco@gmail.com","franco","aaaa1111", "s");
+        User user = new User("alice@email.com","test","Alice","x");
         this.loginService.register(user);
         verify(userRepository,times(1)).save(user);
     }
 
     @Test
     public void givenExistingUser_whenRegister_thenThrowsExistingUserException() throws ExistingUser {
-        User user = new User("franco@gmail.com","franco","aaaa1111", "s");
+        User user = new User("alice@email.com","test","Alice","x");
 
         when(this.userRepository.findByEmail(user.getEmail())).thenReturn(user);
 
@@ -63,10 +65,10 @@ public class LoginServiceTest {
 
     @Test
     public void givenExistingUser_whenGetUserHeaderDto_thenReturnUserHeaderWithCorrectData(){
-        User user = new User("franco@gmail.com","franco","aaaa1111", "s");
-        when(this.userRepository.findByEmail(user.getEmail())).thenReturn(user);
+        User user = new User("alice@email.com","test","Alice","x");
+        when(this.userRepository.findById(user.getId())).thenReturn(user);
 
-        UserHeaderDto userHeaderDto = this.loginService.getUserHeader(user.getEmail());
+        UserHeaderDto userHeaderDto = this.loginService.getUserHeader(user.getId());
 
         assertEquals(user.getName(), userHeaderDto.getName());
         assertEquals(user.getPhotoUrl(), userHeaderDto.getPhotoUrl());
@@ -74,7 +76,7 @@ public class LoginServiceTest {
 
     @Test
     public void givenExistingUser_whenAuthenticate_thenDoesNotThrowException() throws IncorrectUserOrPasswordException {
-        User user = new User("franco@gmail.com","franco","aaaa1111", "s");
+        User user = new User("alice@email.com","test","Alice","x");
 
         when(this.userRepository.findByEmail(user.getEmail())).thenReturn(user);
 

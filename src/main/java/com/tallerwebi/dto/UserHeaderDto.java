@@ -1,4 +1,4 @@
-package com.tallerwebi.controller.dto;
+package com.tallerwebi.dto;
 
 public class UserHeaderDto {
 

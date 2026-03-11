@@ -1,10 +1,11 @@
 package com.tallerwebi.controller;
 
+import com.tallerwebi.dto.LoginDataDto;
 import com.tallerwebi.service.LoginService;
-import com.tallerwebi.service.User;
-import com.tallerwebi.service.excepcion.ExistingUser;
-import com.tallerwebi.service.excepcion.IncorrectUserOrPasswordException;
-import com.tallerwebi.controller.dto.UserHeaderDto;
+import com.tallerwebi.model.User;
+import com.tallerwebi.exception.ExistingUser;
+import com.tallerwebi.exception.IncorrectUserOrPasswordException;
+import com.tallerwebi.dto.UserHeaderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,18 +30,18 @@ public class LoginController {
     public ModelAndView login() {
 
         ModelMap model = new ModelMap();
-        model.put("loginData", new LoginData());
+        model.put("loginData", new LoginDataDto());
         return new ModelAndView("login", model);
     }
 
     @RequestMapping(path = "/process-login", method = RequestMethod.POST)
-    public ModelAndView processLogin (@ModelAttribute("loginData") LoginData loginData, HttpServletRequest request) {
+    public ModelAndView processLogin (@ModelAttribute("loginData") LoginDataDto loginData, HttpServletRequest request) {
         ModelMap model = new ModelMap();
 
         try {
-            loginService.authenticate(loginData.getEmail(), loginData.getPassword());
+            User user = loginService.authenticate(loginData.getEmail(), loginData.getPassword());
 
-            request.getSession().setAttribute("LOGGED_USER_EMAIL", loginData.getEmail());
+            request.getSession().setAttribute("LOGGED_USER_ID", user.getId());
 
             return new ModelAndView("redirect:/home");
 
@@ -74,12 +75,12 @@ public class LoginController {
 
     @RequestMapping(path = "/home", method = RequestMethod.GET)
     public ModelAndView home(HttpServletRequest request) {
-        String loggedEmail = (String) request.getSession().getAttribute("LOGGED_USER_EMAIL");
-        if(loggedEmail == null){
+        Long loggedId = (Long) request.getSession().getAttribute("LOGGED_USER_ID");
+        if(loggedId == null){
             return new ModelAndView("redirect:/login");
         }
         ModelMap model = new ModelMap();
-        UserHeaderDto userHeaderDto = this.loginService.getUserHeader(loggedEmail);
+        UserHeaderDto userHeaderDto = this.loginService.getUserHeader(loggedId);
         model.put("user", userHeaderDto);
 
 
