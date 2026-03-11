@@ -1,7 +1,7 @@
 {
-  "name": "tallerwebi",
+  "name": "finance-manager-ui",
   "version": "1.0.0",
-  "description": "pruebas unitarias",
+  "description": "Frontend logic and unit tests",
   "type": "module",
   "scripts": {
     "test": "jasmine"

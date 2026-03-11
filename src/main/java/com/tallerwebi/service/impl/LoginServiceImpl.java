@@ -1,9 +1,11 @@
-package com.tallerwebi.service;
+package com.tallerwebi.service.impl;
 
-import com.tallerwebi.service.excepcion.IncorrectUserOrPasswordException;
-import com.tallerwebi.service.excepcion.ExistingUser;
-import com.tallerwebi.service.interfaces.UserRepository;
-import com.tallerwebi.controller.dto.UserHeaderDto;
+import com.tallerwebi.model.User;
+import com.tallerwebi.repository.UserRepository;
+import com.tallerwebi.service.LoginService;
+import com.tallerwebi.exception.IncorrectUserOrPasswordException;
+import com.tallerwebi.exception.ExistingUser;
+import com.tallerwebi.dto.UserHeaderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +23,10 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public void authenticate(String email, String password) throws IncorrectUserOrPasswordException {
+    public User authenticate(String email, String password) throws IncorrectUserOrPasswordException {
        User user = userRepository.findByEmail(email);
         if(user == null || !user.getPassword().equals(password)) throw new IncorrectUserOrPasswordException();
+        return user;
     }
 
     @Override
@@ -36,8 +39,8 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public UserHeaderDto getUserHeader(String email) {
-        User user = this.userRepository.findByEmail(email);
+    public UserHeaderDto getUserHeader(Long id) {
+        User user = this.userRepository.findById(id);
         return  new UserHeaderDto(user.getName(),user.getPhotoUrl());
     }
 

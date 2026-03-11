@@ -1,17 +1,17 @@
-import { validarCamposDeLogin } from "./login_funciones.js";
+import { validateLoginFields } from "./login_functions.js";
 
-const btnLoginNode = document.getElementById("btn-login");
-const inputEmailNode = document.getElementById("email");
-const inputPasswordNode = document.getElementById("password");
+const loginBtn = document.getElementById("btn-login");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
 
-inputEmailNode.addEventListener("keyup", (event) => {
-  const inputEmailValue = event.target.value;
-  const inputPasswordValue = inputPasswordNode.value;
-  btnLoginNode.disabled = !validarCamposDeLogin(inputEmailValue, inputPasswordValue);
+emailInput.addEventListener("keyup", (event) => {
+  const emailValue = event.target.value;
+  const passwordValue = passwordInput.value;
+  loginBtn.disabled = !validateLoginFields(emailValue, passwordValue);
 });
 
-inputPasswordNode.addEventListener("keyup", (event) => {
-  const inputEmailValue = inputEmailNode.value;
-  const inputPasswordValue = event.target.value;
-  btnLoginNode.disabled = !validarCamposDeLogin(inputEmailValue, inputPasswordValue);
+passwordInput.addEventListener("keyup", (event) => {
+  const emailValue = emailInput.value;
+  const passwordValue = event.target.value;
+  loginBtn.disabled = !validateLoginFields(emailValue, passwordValue);
 });

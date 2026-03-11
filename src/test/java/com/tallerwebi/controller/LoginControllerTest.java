@@ -1,9 +1,10 @@
 package com.tallerwebi.controller;
 
+import com.tallerwebi.dto.LoginDataDto;
 import com.tallerwebi.service.LoginService;
-import com.tallerwebi.service.User;
-import com.tallerwebi.service.excepcion.ExistingUser;
-import com.tallerwebi.service.excepcion.IncorrectUserOrPasswordException;
+import com.tallerwebi.model.User;
+import com.tallerwebi.exception.ExistingUser;
+import com.tallerwebi.exception.IncorrectUserOrPasswordException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,7 +20,7 @@ public class LoginControllerTest {
 
 	private LoginController loginController;
 	private User userMock;
-	private LoginData datosLoginMock;
+	private LoginDataDto datosLoginMock;
 	private HttpServletRequest requestMock;
 	private HttpSession sessionMock;
 	private LoginService servicioLoginMock;
@@ -27,9 +28,9 @@ public class LoginControllerTest {
 
 	@BeforeEach
 	public void setUp(){
-		datosLoginMock = new LoginData("franco@email.com", "123");
+		datosLoginMock = new LoginDataDto("alice@email.com", "test");
         userMock = mock(User.class);
-        when(userMock.getEmail()).thenReturn("franco@email.com");
+        when(userMock.getEmail()).thenReturn("alice@email.com");
 		requestMock = mock(HttpServletRequest.class);
 		sessionMock = mock(HttpSession.class);
 		servicioLoginMock = mock(LoginService.class);
@@ -44,7 +45,7 @@ public class LoginControllerTest {
 
 		assertThat(modelAndView.getViewName(), equalToIgnoringCase("login"));
 		assertThat(modelAndView.getModel().get("error").toString(), equalToIgnoringCase("Invalid email or password"));
-		verify(sessionMock, times(0)).setAttribute("LOGGED_USER_EMAIL", "franco@email.com");
+		verify(sessionMock, times(0)).setAttribute(eq("LOGGED_USER_ID"), any());
 
 	};
 
@@ -53,14 +54,15 @@ public class LoginControllerTest {
 
 		User foundUserMock = mock(User.class);
 		when(foundUserMock.getEmail()).thenReturn(datosLoginMock.getEmail());
+        when(foundUserMock.getId()).thenReturn(1L);
 
 		when(requestMock.getSession()).thenReturn(sessionMock);
-		servicioLoginMock.authenticate(anyString(), anyString());
-		
+        when(servicioLoginMock.authenticate(anyString(), anyString())).thenReturn(foundUserMock);
+
 		ModelAndView modelAndView = loginController.processLogin(datosLoginMock, requestMock);
 		
 		assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/home"));
-		verify(sessionMock, times(1)).setAttribute("LOGGED_USER_EMAIL", "franco@email.com");
+		verify(sessionMock, times(1)).setAttribute("LOGGED_USER_ID", 1L);
 	};
 
 	@Test

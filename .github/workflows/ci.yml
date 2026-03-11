@@ -1,30 +1,38 @@
-name: integracion_continua
+name: Continuous Integration
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
 on:
   pull_request:
     branches: ["main"]
   push:
     branches: ["main"]
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 Esta tarea (job) fue lanzado automaticamente por el evento ${{ github.event_name }}"
-      - run: echo "🐧 Esta tarea esta corriendo en un servidor ${{ runner.os }} por GitHub!"
-      - run: echo "🔎 El nombre de la rama es ${{ github.ref }} y tu repositorio es ${{ github.repository }}."
-      - name: Descargando el codigo
+      - run: echo "🎉 This job was automatically triggered by the ${{ github.event_name }} event"
+      - run: echo "🐧 This job is running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The branch name is ${{ github.ref }} and your repository is ${{ github.repository }}."
+
+      - name: Checkout code
         uses: actions/checkout@v3
-      - run: echo "💡 El repositorio ${{ github.repository }} ha sido clonado."
-      - run: echo "🖥️ El workflow esta listo para testear el codigo"
-      - name: Corriendo las pruebas
+
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned."
+      - run: echo "🖥️ The workflow is ready to test the code"
+
+      - name: Running Java tests
         run: |
           mvn clean test
-      - run: echo "🍏 El estado de la tarea es ${{ job.status }}."
-      - name: Instalar paquetes de node
+
+      - run: echo "🍏 The job status is ${{ job.status }}."
+
+      - name: Install Node.js packages
         run: |
           cd src/main/webapp/resources/core/js
           npm install
-      - name: Ejecutar pruebas de javascript
+
+      - name: Execute JavaScript tests
         run: |
           cd src/main/webapp/resources/core/js
           npm run test

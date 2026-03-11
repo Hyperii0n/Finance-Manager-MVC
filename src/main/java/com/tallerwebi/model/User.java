@@ -1,4 +1,4 @@
-package com.tallerwebi.service;
+package com.tallerwebi.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

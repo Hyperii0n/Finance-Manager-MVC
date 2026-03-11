@@ -1,4 +1,4 @@
-package com.tallerwebi.service.excepcion;
+package com.tallerwebi.exception;
 
 public class ExistingUser extends Exception {
 

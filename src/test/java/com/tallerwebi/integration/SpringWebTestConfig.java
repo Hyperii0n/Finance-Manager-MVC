@@ -1,4 +1,4 @@
-package com.tallerwebi.integration.config;
+package com.tallerwebi.integration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -15,7 +15,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({"com.tallerwebi.controller", "com.tallerwebi.service", "com.tallerwebi.repository"})
+@ComponentScan({"com.tallerwebi.controller", "com.tallerwebi.model", "com.tallerwebi.service", "com.tallerwebi.repository"})
 public class SpringWebTestConfig implements WebMvcConfigurer {
 
     // Spring + Thymeleaf need this
