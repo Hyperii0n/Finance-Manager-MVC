@@ -2,7 +2,6 @@ package com.tallerwebi.repository.impl;
 
 import com.tallerwebi.model.User;
 import com.tallerwebi.repository.UserRepository;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;

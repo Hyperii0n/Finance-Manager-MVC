@@ -73,20 +73,6 @@ public class LoginController {
         return new ModelAndView("new-user", model);
     }
 
-    @RequestMapping(path = "/home", method = RequestMethod.GET)
-    public ModelAndView home(HttpServletRequest request) {
-        Long loggedId = (Long) request.getSession().getAttribute("LOGGED_USER_ID");
-        if(loggedId == null){
-            return new ModelAndView("redirect:/login");
-        }
-        ModelMap model = new ModelMap();
-        UserHeaderDto userHeaderDto = this.loginService.getUserHeader(loggedId);
-        model.put("user", userHeaderDto);
-
-
-        return new ModelAndView("home",model);
-    }
-
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView index() {
         return new ModelAndView("redirect:/login");

@@ -47,7 +47,7 @@
 
       <header class="main__header">
         <div class="main__profile">
-          <p class="main__name">Hi,<span th:text="${user.name}">  </span></p>
+          <p class="main__name">Hi, <span th:text="${user.name}">  </span></p>
           <img class="main__img" th:src=" @{${user.photoUrl ?: '/img/default-user.jpg'}}" alt="User Photo"/>
         </div>
 
@@ -100,89 +100,47 @@
 
       </section>
 
-      <section class="activity">
+        <section class="activity">
 
-        <div class="activity__container">
+            <div class="activity__container">
 
-          <header class="activity__header">
-            <h3 class="activity__title">ACTIVITY</h3>
-          </header>
+                <header class="activity__header">
+                    <h3 class="activity__title">ACTIVITY</h3>
+                </header>
 
-          <div class="activity__list">
+                <div class="activity__list">
 
-            <article class="activity__card">
-              <h3 class="activity__amount">$ 5180.96</h3>
-              <p class="activity__description">Burgers</p>
-              <div class="activity__date">
-                <p class="activity__day">28/01/2026</p>
-                <p class="activity__time">16:14 pm</p>
-              </div>
-              <div class="activity__category">
-                <img class="activity__category-icon" alt="" th:src="@{/img/icon_food.png}">
-                <p class="activity__category-name">Food</p>
-              </div>
-            </article>
+                    <div th:if="${#lists.isEmpty(operations)}" class="empty-message">
+                        <p>No recent activity yet.</p>
+                    </div>
 
-            <article class="activity__card">
-              <h3 class="activity__amount">$ 5180.96</h3>
-              <p class="activity__description">Burgers</p>
-              <div class="activity__date">
-                <p class="activity__day">28/01/2026</p>
-                <p class="activity__time">16:14 pm</p>
-              </div>
-              <div class="activity__category">
-                <img class="activity__category-icon" alt="" th:src="@{/img/icon_food.png}">
-                <p class="activity__category-name">Food</p>
-              </div>
-            </article>
+                    <article class="activity__card"
+                             th:unless="${#lists.isEmpty(operations)}"
+                             th:each="op : ${operations}">
 
-            <article class="activity__card">
-              <h3 class="activity__amount">$ 5180.96</h3>
-              <p class="activity__description">Burgers</p>
-              <div class="activity__date">
-                <p class="activity__day">28/01/2026</p>
-                <p class="activity__time">16:14 pm</p>
-              </div>
-              <div class="activity__category">
-                <img class="activity__category-icon" alt="" th:src="@{/img/icon_food.png}">
-                <p class="activity__category-name">Food</p>
-              </div>
-            </article>
+                        <h3 class="activity__amount" th:text="'$ ' + ${op.amount}">$ 0.00</h3>
+                        <p class="activity__description" th:text="${op.description}">Description</p>
 
-            <article class="activity__card">
-              <h3 class="activity__amount">$ 5180.96</h3>
-              <p class="activity__description">Burgers</p>
-              <div class="activity__date">
-                <p class="activity__day">28/01/2026</p>
-                <p class="activity__time">16:14 pm</p>
-              </div>
-              <div class="activity__category">
-                <img class="activity__category-icon" alt="" th:src="@{/img/icon_food.png}">
-                <p class="activity__category-name">Food</p>
-              </div>
-            </article>
+                        <div class="activity__date">
+                            <p class="activity__day" th:text="${op.formattedDate}">01/01/2026</p>
+                            <p class="activity__time" th:text="${op.formattedTime}">00:00</p>
+                        </div>
 
-            <article class="activity__card">
-              <h3 class="activity__amount">$ 5180.96</h3>
-              <p class="activity__description">Burgers</p>
-              <div class="activity__date">
-                <p class="activity__day">28/01/2026</p>
-                <p class="activity__time">16:14 pm</p>
-              </div>
-              <div class="activity__category">
-                <img class="activity__category-icon" alt="" th:src="@{/img/icon_food.png}">
-                <p class="activity__category-name">Food</p>
-              </div>
-            </article>
+                        <div class="activity__category">
+                            <img class="activity__category-icon" alt="" th:src="@{/img/icon-food.png}">
+                            <p class="activity__category-name" th:text="${op.type}">Category</p>
+                        </div>
 
-          </div>
+                    </article>
 
-        </div>
+                </div>
 
-      </section>
+            </div>
+
+        </section>-
 
     </main>
-
+</div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/home.js}"></script>    
